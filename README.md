@@ -1,1 +1,9 @@
-HabitTracker is a project focused on helping users track and manage their habits effectively. Built using Node.js and Express, this project sets up a server for handling habit management tasks. It connects to a MongoDB database via Mongoose for persistent data storage, ensuring users' habit data is safely stored and easily retrievable. The server utilizes middleware for JSON parsing and Cross-Origin Resource Sharing (CORS) to enable secure and flexible communication between the client and the server. With routes specifically designed for managing habits, HabitTracker provides a comprehensive backend structure for creating, reading, updating, and deleting habit records. This project runs on port 5000, ready to integrate with front-end applications for a full-stack habit tracking solution.
+# HabitTracker
+
+**Purpose:** HabitTracker is a web application designed to help users track their daily habits. It allows users to create and track their habits, view progress reports, and stay motivated to maintain their routines.
+
+## Features
+- **Create Habits:** Users can create and save their habits.
+- **Manage Habits:** Users can update and delete their habits.
+- **Track Progress:** Users can view their habit progress over time.
+- **Responsive Design:** The application is designed to work on various devices and screen sizes.
