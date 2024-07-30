@@ -12,8 +12,8 @@ exports.createHabit = async (req, res) => {
             frequency: req.body.frequency,
         });
 
-        const saveHabit = await newHabit.save();
-        res.status(201).json(saveHabit);
+        const savedHabit = await newHabit.save();
+        res.status(201).json(savedHabit);
     } catch (error) {
         res.status(400).json({ message: "Failed to create a new habit: " + error.message });
     }
@@ -36,6 +36,9 @@ exports.getHabitById = async (req, res) => {
         }
         res.json(habit);
     } catch (error) {
+        if (error.name === 'CastError') {
+            return res.status(400).json({ message: "Invalid habit id format" });
+        }
         res.status(500).json({ message: "Error finding habit: " + error.message });
     }
 };
@@ -54,6 +57,11 @@ exports.updateHabit = async (req, res) => {
         const updatedHabit = await habit.save();
         res.json(updatedHabit);
     } catch (error) {
+        if (error.name === 'ValidationError') {
+            return res.status(400).json({ message: "Validation error: " + error.message });
+        } else if (error.name === 'CastError') {
+            return res.status(400).json({ message: "Invalid habit id format: " + error.message });
+        }
         res.status(400).json({ message: "Failed to update habit: " + error.message });
     }
 };
@@ -65,8 +73,11 @@ exports.deleteHabit = async (req, res) => {
             return res.status(404).json({ message: "Habit not found" });
         }
         await habit.remove();
-        res.json({ message: "Deleted Habit" });
+        res.status(200).json({ message: "Deleted Habit" });
     } catch (error) {
+        if (error.name === 'CastError') {
+            return res.status(400).json({ message: "Invalid habit id format: " + error.message });
+        }
         res.status(500).json({ message: "Failed to delete habit: " + error.message });
     }
 };
