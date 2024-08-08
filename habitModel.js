@@ -1,29 +1,29 @@
 const mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log('MongoDB Connected'))
-  .catch(err => console.error('Could not connect to MongoDB...', err));
+  .then(() => console.log('MongoDB Connection Successful'))
+  .catch(err => console.error('MongoDB Connection Failed...', err));
 
-const habitSchema = new mongoose.Schema({
-  name: {
+const habitTrackerSchema = new mongoose.Schema({
+  habitName: {
     type: String,
-    required: [true, 'Name is required']
+    required: [true, 'Habit name is required']
   },
-  startDate: {
+  trackingStartDate: {
     type: Date,
-    required: [true, 'Start date is required'],
+    required: [true, 'Tracking start date is required'],
     default: Date.now
   },
-  frequency: {
+  trackingFrequency: {
     type: String,
-    required: [true, 'Frequency is required'],
+    required: [true, 'Tracking frequency is required'],
     enum: {
       values: ['Daily', 'Weekly', 'Monthly'],
-      message: '{VALUE} is not supported'
+      message: '{VALUE} frequency is not supported'
     }
   }
 });
 
-const Habit = mongoose.model('Habit', habitSchema);
+const HabitTracker = mongoose.model('HabitTracker', habitTrackerSchema);
 
-module.exports = Habit;
+module.exports = HabitTracker;
