@@ -26,4 +26,21 @@ const habitTrackerSchema = new mongoose.Schema({
 
 const HabitTracker = mongoose.model('HabitTracker', habitTrackerSchema);
 
-module.exports = HabitTracker;
+function logAllHabits() {
+  HabitTracker.find({}, (err, habits) => {
+    if (err) {
+      console.error('Failed to retrieve habits', err);
+      return;
+    }
+    console.log('All Habits:', habits);
+  });
+}
+
+mongoose.connection.once('open', () => {
+  logAllHabits();
+});
+
+module.exports = {
+  HabitTracker,
+  logAllHabits
+};
