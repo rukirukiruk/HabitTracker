@@ -1,0 +1,84 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1170px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+header {
+  background: #007bff;
+  color: #ffffff;
+  padding-top: 30px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+.habit-form {
+  margin-top: 30px;
+}
+
+input[type="text"], input[type="date"] {
+  width: calc(100% - 22px);
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.habit-list {
+  margin-top: 20px;
+}
+
+.habit {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #eee;
+}
+
+.habit p {
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 5px;
+  }
+
+  header {
+    padding-top: 20px;
+    padding-bottom: 10px;
+  }
+}
