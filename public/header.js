@@ -1,31 +1,31 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-const homeUrl = process.env.REACT_APP_HOME_URL;
-const aboutUrl = process.env.REACT_APP_ABOUT_URL;
-const contactUrl = process.env.REACT_APP_CONTACT_URL;
+
+const navLinks = [
+  { path: process.env.REACT_APP_HOME_URL, name: 'Home' },
+  { path: process.env.REACT_APP_ABOUT_URL, name: 'About' },
+  { path: process.env.REACT_APP_CONTACT_URL, name: 'Contact' },
+];
+
 const Header = () => {
   return (
     <header>
       <nav>
         <ul>
-          <li>
-            <NavLink to={homeUrl} exact activeClassName="active">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={aboutUrl} activeClassName="active">
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to={contactUrl} activeClassName="active">
-              Contact
-            </NavLink>
-          </li>
+          {navLinks.map((link, index) => (
+            <li key={index}>
+              <NavLink 
+                to={link.path} 
+                activeClassName="active"
+                exact={link.path === process.env.REACT_APP_HOME_URL}>
+                {link.name}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>
   );
 };
+
 export default Header;
