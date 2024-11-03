@@ -8,16 +8,18 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const isNavLinkExact = (path) => path === process.env.REACT_APP_HOME_URL;
+
   return (
     <header>
       <nav>
         <ul>
           {navLinks.map((link, index) => (
             <li key={index}>
-              <NavLink 
-                to={link.path} 
+              <NavLink
+                to={link.path}
                 activeClassName="active"
-                exact={link.path === process.env.REACT_APP_HOME_URL}>
+                exact={isNavLinkExact(link.path)}>
                 {link.name}
               </NavLink>
             </li>
