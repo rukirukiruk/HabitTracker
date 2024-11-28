@@ -5,6 +5,10 @@ const HabitForm = ({ onSubmit, initialData = {} }) => {
   const [startDate, setStartDate] = useState(initialData.startDate || '');
   const [frequency, setFrequency] = useState(initialData.frequency || '');
 
+  const logFormData = (data) => {
+    console.log('Form Data:', data);
+  };
+
   const validateForm = () => {
     if (!habitName || !startDate || !frequency) {
       alert('All fields are required');
@@ -16,7 +20,11 @@ const HabitForm = ({ onSubmit, initialData = {} }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      onSubmit({ habitName, startDate, frequency });
+      const formData = { habitName, startDate, frequency };
+      onSubmit(formData);
+
+      logFormData(formData);
+
       setHabitName('');
       setStartDate('');
       setFrequency('');
